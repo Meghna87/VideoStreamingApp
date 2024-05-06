@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8" />
+<title>Video Details</title>
+</head>
+
+<body>
+	<div>
+		<h1>Retrieve Video details by Genre</h1>
+		<br />
+		<form action="#" th:action="@{/getvideobygenre}" method="post"
+			th:object="${videoDetailObj}">
+
+			<div>
+				<label for="videoGenre">Enter Genre Name</label> 
+				<input type="text" th:field="*{genre}" id="videoGenre" />
+			</div>
+			<button type="submit">Submit</button>
+		</form>
+		<br />
+		
+		<h1>Retrieve Video details by Video ID</h1>
+		<br />
+		<form action="#" th:action="@{/getvideobyid}" method="post"
+			th:object="${videoDetailObj2}">
+
+			<div>
+				<label for="videoID">Enter Video ID</label> 
+				<input type="text" th:field="*{videoID}" id="videoID" />
+			</div>
+			<button type="submit">Submit</button>
+		</form>
+		<br />
+
+		<h1>Retrieve Video details by Video Duration</h1>
+		<form action="#" th:action="@{/getvideobyduration}" method="post"
+			th:object="${videoDetailObj3}">
+
+			<div>
+				<label for="videoDuration">Enter Video Duration in Minutes</label> 
+				<input type="text" th:field="*{duration}" id="videoDuration" />
+			</div>
+			<button type="submit">Submit</button>
+		</form>
+		<br />
+
+
+		<h1>
+			<a th:href="@{/addNewVideo}">Add new video details</a>
+		</h1>
+		<br />
+
+		<h1>Video Details</h1>
+		<div th:if="${videolist.size() > 0}">
+			<table class="table" border="2">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Video Name</th>
+						<th scope="col">Video Genre</th>
+						<th scope="col">Video Duration</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="video : ${videolist}">
+						<th scope="row">[[${video.videoID}]]</th>
+						<td>[[${video.videoName}]]</td>
+						<td>[[${video.genre}]]</td>
+						<td>[[${video.duration}]]</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
